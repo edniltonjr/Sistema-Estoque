@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <span>Copyright <strong>Abz</strong>2019-2020 </span>
+    <span>&copy; Copyright <strong>Abz</strong> {{ `2019-${new Date().getFullYear()}` }}</span>
   </footer>
 </template>
 

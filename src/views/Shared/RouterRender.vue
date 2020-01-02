@@ -1,14 +1,9 @@
 <template>
-  <router-view :key="key" />
+  <router-view />
 </template>
 
 <script>
 export default {
-  name: 'RouterRender',
-  computed: {
-    key () {
-      return Math.random().toString().substr(2)
-    }
-  }
+  name: 'RouterRender'
 }
 </script>

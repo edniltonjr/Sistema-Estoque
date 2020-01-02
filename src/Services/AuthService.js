@@ -17,6 +17,12 @@ export const AuthService = {
       })
     })
   },
+  logout () {
+    return new Promise(function (resolve, reject) {
+      localStorage.removeItem('_userToken_')
+      resolve(true)
+    })
+  },
   checkToken () {
     return new Promise((resolve, reject) => {
       let userToken = { headers: { Authorization: 'Bearer ' + localStorage.get('_userToken_') || '' } }

@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <a class="toggle">
+    <a v-if="toogle" class="toggle">
       <i class="fa fa-lg"></i>
     </a>
     <h1 class="title">
@@ -13,12 +13,18 @@
 export default {
   name: 'Header',
   props: {
-    title: String
+    title: {
+      type: String,
+      required: true
+    },
+    toogle: {
+      type: Boolean,
+      default: false
+    },
+    userMenu: {
+      type: Boolean,
+      default: false
+    }
   }
-
 }
 </script>
-
-<style >
-
-</style>
