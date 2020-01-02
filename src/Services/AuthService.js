@@ -10,7 +10,7 @@ export const AuthService = {
       Http.post(`${baseApiUrl}/auth`, userData).then(res => {
         localStorage.setItem('_userToken_', res.data.token)
         resolve(true)
-        alert('Logado com Sucesso! ')
+        alert('Logado com Sucesso!')
       }).catch((err) => {
         console.log('errado')
         showError(err)
