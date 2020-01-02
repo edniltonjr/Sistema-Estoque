@@ -1,29 +1,29 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Router from 'vue-router'
 
-Vue.use(VueRouter)
+/* Layout */
+import Layout from '@/views/Shared/SiteLayout'
 
-const routes = [
+import AdminRouter from './modules/AdminRouter'
+import AuthRouter from './modules/AuthRouter'
+
+Vue.use(Router)
+
+export const constantRouterMap = [
   {
     path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    redirect: '/admin',
+    component: Layout,
+    children: [
+      AdminRouter,
+      AuthRouter
+    ]
   }
 ]
 
-const router = new VueRouter({
-  mode: 'history',
+export default new Router({
+  mode: 'history', // require service support
   base: process.env.BASE_URL,
-  routes
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRouterMap
 })
-
-export default router
