@@ -31,7 +31,8 @@ export default {
       AuthService.signin(this.login).then(data => {
         this.$router.push({ path: '/auth/' })
       })
-    } }
+    }
+  }
 }
 </script>
 <style scoped src="@/views/Login/login.css"></style>
