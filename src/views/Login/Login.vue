@@ -29,9 +29,10 @@ export default {
   methods: {
     doLogin () {
       AuthService.signin(this.login).then(data => {
-        this.$router.push({ path: '/auth/' })
+        this.$router.push({ path: '/admin/' })
       })
-    } }
+    }
+  }
 }
 </script>
 <style scoped src="@/views/Login/login.css"></style>

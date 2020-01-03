@@ -1,34 +1,26 @@
 <template>
-  <div class="app" :toogle="true">
+  <div class="app hide-menu">
     <Header title="ACOBRAZIL SISTEMAS DE ESTOQUE"></Header>
-    <!-- <menu-site></menu-site> -->
     <transition name="fade" mode="out-in">
-      <router-render />
+      <router-view />
     </transition>
     <Footer />
   </div>
 </template>
 
 <script>
-import RouterRender from './RouterRender.vue'
 import Header from './Header.vue'
 import Footer from './Footer.vue'
 
 export default {
-  name: 'SiteLayout',
+  name: 'LoginLayout',
   components: {
-    RouterRender, Header, Footer
+    Header,
+    Footer
   },
-  computed: {
-    user () {
-      return localStorage.getItem('_userInfo_') || null
-    }
-  },
-  beforeMount: async function () {
+  beforeMount: function () {
     if (localStorage.getItem('_userToken_')) {
-      await this.$store.dispatch('getUserInfo')
-    } else {
-      this.$router.push({ name: 'Logout' })
+      this.$router.push({ name: 'DefaultAdmin' })
     }
   }
 }

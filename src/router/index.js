@@ -4,8 +4,8 @@ import Router from 'vue-router'
 /* Layout */
 import Layout from '@/views/Shared/SiteLayout'
 
-import AdminRouter from './modules/AdminRouter'
 import AuthRouter from './modules/AuthRouter'
+import AdminRouter from './modules/AdminRouter'
 
 Vue.use(Router)
 
@@ -15,10 +15,10 @@ export const constantRouterMap = [
     redirect: '/admin',
     component: Layout,
     children: [
-      AdminRouter,
-      AuthRouter
+      AdminRouter
     ]
-  }
+  },
+  AuthRouter
 ]
 
 export default new Router({
