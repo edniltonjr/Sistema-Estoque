@@ -18,7 +18,7 @@ Vue.config.productionTip = process.env.NODE_ENV === 'production'
 // BootStrap
 Vue.use(BootstrapVue)
 
-new Vue({
+global.instanceApp = new Vue({
   router,
   store,
   render: h => h(App)

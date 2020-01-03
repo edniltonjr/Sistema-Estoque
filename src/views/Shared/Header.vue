@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <a v-if="toogle" class="toggle">
+    <a v-if="!toogle" class="toggle">
       <i class="fa fa-lg"></i>
     </a>
     <h1 class="title">

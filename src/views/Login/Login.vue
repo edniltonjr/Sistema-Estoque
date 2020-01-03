@@ -29,7 +29,7 @@ export default {
   methods: {
     doLogin () {
       AuthService.signin(this.login).then(data => {
-        this.$router.push({ path: '/auth/' })
+        this.$router.push({ path: '/admin/' })
       })
     }
   }

@@ -17,6 +17,11 @@ export default {
   components: {
     Header,
     Footer
+  },
+  beforeMount: function () {
+    if (localStorage.getItem('_userToken_')) {
+      this.$router.push({ name: 'DefaultAdmin' })
+    }
   }
 }
 </script>

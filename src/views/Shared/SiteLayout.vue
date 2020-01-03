@@ -1,5 +1,5 @@
 <template>
-  <div class="app" :class="{'hide-menu' : !user}">
+  <div class="app" :toogle="true">
     <Header title="ACOBRAZIL SISTEMAS DE ESTOQUE"></Header>
     <!-- <menu-site></menu-site> -->
     <transition name="fade" mode="out-in">
@@ -21,7 +21,14 @@ export default {
   },
   computed: {
     user () {
-      return false
+      return localStorage.getItem('_userInfo_') || null
+    }
+  },
+  beforeMount: async function () {
+    if (localStorage.getItem('_userToken_')) {
+      await this.$store.dispatch('getUserInfo')
+    } else {
+      this.$router.push({ name: 'Logout' })
     }
   }
 }
