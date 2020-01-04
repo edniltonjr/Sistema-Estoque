@@ -29,7 +29,7 @@ export const AuthService = {
         let userToken = { headers: { Authorization: 'Bearer ' + localStorage.getItem('_userToken_') || '' } }
         Http.post(`${baseApiUrl}/admin/info`, null, userToken).then(res => {
           if (res.data.auth) {
-            localStorage.setItem('_userInfo_', JSON.stringify(res.data.user[0]))
+            localStorage.setItem('_userInfo_', JSON.stringify(res.data.user))
             resolve(true)
           } else {
             global.instanceApp.$router.push({ name: 'Logout' })

@@ -45,8 +45,9 @@
 </template>
 
 <script>
-import { baseApiUrl, showError } from '@/global'
+import { showError } from '@/errors/default.js'
 import axios from 'axios'
+const baseApiUrl = process.env.VUE_APP_BASE_API_URL
 
 export default {
   name: 'ProdutoAdmin',

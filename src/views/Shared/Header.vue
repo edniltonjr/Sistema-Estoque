@@ -6,12 +6,16 @@
     <h1 class="title">
       <router-link to="/">{{ title }}</router-link>
     </h1>
+    <UserDropdown />
   </header>
 </template>
 
 <script>
+import UserDropdown from '@/components/template/UserDropdown'
+
 export default {
   name: 'Header',
+  components: { UserDropdown },
   props: {
     title: {
       type: String,
