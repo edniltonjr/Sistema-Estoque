@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { baseApiUrl, showError } from '@/global'
+import { baseApiUrl, showError } from '@/errors/default'
 import axios from 'axios'
 
 export default {
