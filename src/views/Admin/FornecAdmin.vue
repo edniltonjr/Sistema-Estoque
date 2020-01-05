@@ -43,7 +43,7 @@ import { baseApiUrl, showError, userToken } from '@/errors/default.js'
 import axios from 'axios'
 
 export default {
-  name: 'CategoryAdmin',
+  name: 'FornecAdmin',
   data: function () {
     return {
       mode: 'save',
