@@ -6,10 +6,10 @@
               <b-col md="6" sm="12">
 
                   <b-form-group label="Nome Produto" label-for="produto-name">
-                      <b-form-input id="produto-name" type="text"
-                      v-model="produto.DESCRICAO" required
-                      :readonly="mode === 'remove'"
-                      placeholder="Informe a Descrição" />
+                    <b-form-input id="produto-name" type="text"
+                    v-model="produto.DESCRICAO" required
+                    :readonly="mode === 'remove'"
+                    placeholder="Informe a Descrição" />
                   </b-form-group>
 
                   <b-form-group label="FORNECEDOR" label-for="fornec-categ">
@@ -24,7 +24,6 @@
 
               </b-col>
          </b-row>
-
         <b-button variant="primary" v-if="mode === 'save'" @click="save">Salvar</b-button>
         <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
         <b-button class="ml-2" @click="reset">Cancelar</b-button>

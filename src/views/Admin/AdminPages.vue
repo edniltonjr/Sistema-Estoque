@@ -5,9 +5,6 @@
     <div class="admin-pages-tabs">
       <b-card no-body>
         <b-tabs card>
-          <b-tab title="Aba 1" active>
-            Teste Mundo
-          </b-tab>
           <b-tab title="Produtos" active>
             <ProdutoAdmin/>
           </b-tab>
