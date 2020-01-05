@@ -1,42 +1,46 @@
 <template>
   <div class="user-dropdown">
-    <div class="user-button">
-        <span class="d-none d-sm-block">{{ user.EMAIL }}</span>
-        <div class="user-dropdown-img">
-             <Gravatar :email="user.EMAIL" alt="User" />
-        </div>
-        <i class="fa fa-angle-down"></i>
+    <div v-if="user" class="user-button">
+      <span class="d-none d-sm-block">{{ user.EMAIL }}</span>
+      <div class="user-dropdown-img">
+        <Gravatar :email="user.EMAIL" alt="User" />
+      </div>
+      <i class="fa fa-angle-down"></i>
     </div>
     <div class="user-dropdown-content">
-        <router-link to="/admin">
-            <i class="fa fa-cogs"></i> Administração</router-link>
-        <a href><i class="fa fa-sign-out"></i> Sair</a>
-
+      <router-link to="/admin"><i class="fa fa-cogs"></i> Administração</router-link>
+      <a href><i class="fa fa-sign-out"></i> Sair</a>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
 
-import store from '@/store'
+// import store from '@/store'
 import Gravatar from 'vue-gravatar'
 
 export default {
   name: 'UserDropdown',
   data () {
     return {
-      user: store.getters.userInfo || ' -- DADOS NÃO ENCONTRADOS -- '
     }
   },
-  components: { Gravatar },
-
-  beforeMount: function () {
-    var me = this
-    this.user = store.dispatch('getUserInfo').then((data) => {
-      me.user = data
-    })
+  components: {
+    Gravatar
+  },
+  computed: {
+    user () {
+      console.log((this.$store.getters.userInfo || null))
+      return this.$store.getters.userInfo || null
+    }
   }
 
+//   beforeMount: function () {
+//     var me = this
+//     this.user = store.dispatch('getUserInfo').then((data) => {
+//       me.user = data
+//     })
+//   }
 }
 
 </script>

@@ -8,7 +8,7 @@ export const AuthUser = {
   },
   mutations: {
     SET_USER: (state, data) => {
-      // state.user = user.authUser
+      state.userInfo = data.userInfo
     }
   },
   actions: {
