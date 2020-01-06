@@ -9,7 +9,7 @@
     </div>
     <div class="user-dropdown-content">
       <router-link to="/admin"><i class="fa fa-cogs"></i> Administração</router-link>
-      <a href><i class="fa fa-sign-out"></i> Sair</a>
+      <router-link to="/auth/logout"><i class="fa fa-sign-out"></i> Sair</router-link>
     </div>
   </div>
 </template>
