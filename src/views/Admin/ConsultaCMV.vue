@@ -20,6 +20,7 @@
         <b-button variant="primary" v-if="mode === 'save'" @click="ConsultarCMV(consulta.DT_INI, consulta.DT_FIM, consulta.PRODUTO)">Consultar</b-button>
         <b-button class="ml-2" @click="reset">Cancelar</b-button>
 
+        <p>  {{consulta.DT_INI}}   {{ consulta.DT_FIM }}</p>
         </b-form>
         <hr>
       <b-table hover striped :items="consultas" :fields="fields">
@@ -75,7 +76,6 @@ export default {
     reset () {
       this.mode = 'save'
       this.consulta = {}
-      this.ConsultarCMV()
     }
   },
 
