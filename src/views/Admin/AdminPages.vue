@@ -5,9 +5,6 @@
     <div class="admin-pages-tabs">
       <b-card no-body>
         <b-tabs card>
-          <b-tab title="Aba 1" active>
-            Teste Mundo
-          </b-tab>
           <b-tab title="Produtos" active>
             <ProdutoAdmin/>
           </b-tab>
@@ -16,6 +13,12 @@
           </b-tab>
            <b-tab title="Categorias" active>
             <CategoryAdmin />
+          </b-tab>
+            <b-tab title="Entradas" active>
+            <EntradaAdmin />
+          </b-tab>
+          <b-tab title="Saidas" active>
+            <SaidaAdmin />
           </b-tab>
         </b-tabs>
       </b-card>
@@ -27,12 +30,16 @@
 import ProdutoAdmin from './ProdAdmin'
 import FornecAdmin from './FornecAdmin'
 import CategoryAdmin from './CategoryAdmin'
+import EntradaAdmin from './EntradaAdmin'
+import SaidaAdmin from './SaidaAdmin'
 export default {
   name: 'AdminPages',
   components: {
     ProdutoAdmin,
     FornecAdmin,
-    CategoryAdmin
+    CategoryAdmin,
+    EntradaAdmin,
+    SaidaAdmin
   }
 }
 </script>

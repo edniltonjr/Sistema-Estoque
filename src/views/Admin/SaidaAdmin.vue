@@ -38,11 +38,11 @@
 </template>
 
 <script>
-import { baseApiUrl, showError } from '@/global'
+import { baseApiUrl, showError, userToken } from '@/errors/default'
 import axios from 'axios'
 
 export default {
-  name: 'EntradaMerc',
+  name: 'SaidaAdmin',
   data: function () {
     return {
       mode: 'save',
@@ -70,14 +70,14 @@ export default {
   methods: {
     listarEstoques () {
       const url = `${baseApiUrl}/estoques`
-      axios.get(url).then(res => {
+      axios.get(url, userToken).then(res => {
         this.estoques = res.data
       })
     },
 
     listarFornecedores () {
       const url = `${baseApiUrl}/fornecedores`
-      axios.get(url).then(res => {
+      axios.get(url, userToken).then(res => {
         this.fornecedores = res.data.map(fornecedor => {
           return { ...fornecedor, value: fornecedor.ID_FORNECEDOR, text: fornecedor.NOME }
         })
@@ -87,7 +87,7 @@ export default {
 
     listarProdutos  () {
       const url = `${baseApiUrl}/produtos`
-      axios.get(url).then(res => {
+      axios.get(url, userToken).then(res => {
         this.produtos = res.data.map(produto => {
           return { ...produto, value: produto.ID_PRODUTO, text: produto.PRODUTO }
         })
@@ -96,7 +96,7 @@ export default {
 
     listarMercadorias () {
       const url = `${baseApiUrl}/mercadorias`
-      axios.get(url).then(res => {
+      axios.get(url, userToken).then(res => {
         this.mercadorias = res.data
       })
     },
@@ -110,7 +110,7 @@ export default {
     save () {
       const method = this.estoque.ID_ESTOQUE ? 'put' : 'post'
       const id = this.estoque.ID_ESTOQUE ? `/${this.estoque.ID_ESTOQUE}` : ''
-      axios[method](`${baseApiUrl}/estoques/saida${id}`, this.estoque)
+      axios[method](`${baseApiUrl}/estoques/saida${id}`, this.estoque, userToken)
         .then(() => {
           this.$toasted.global.defaultSuccess()
           this.reset()
@@ -120,7 +120,7 @@ export default {
 
     remove () {
       const id = this.produto.ID_PRODUTO
-      axios.delete(`${baseApiUrl}/produtos/${id}`)
+      axios.delete(`${baseApiUrl}/produtos/${id}`, userToken)
         .then(() => {
           this.$toasted.global.defaultSuccess()
           this.reset()
