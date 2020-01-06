@@ -34,35 +34,28 @@ import { baseApiUrl, userToken } from '@/errors/default'
 import axios from 'axios'
 
 export default {
-  name: 'EntradaAdmin',
+  name: 'ConsultaAdmin',
   components: { Select2 },
   data: function () {
     return {
-      optionSelected: null,
-      optionsSelected: null,
       mode: 'save',
-      produto: {},
-      produtos: [],
       consulta: {
         produto: ''
       },
+      produto: {},
+      produtos: [],
       consultas: [],
       fields: [
-        { key: 'PRODUTO', label: 'Produto', sortable: true },
+        { key: 'PRODUTO', label: 'PRODUTO', sortable: true },
         { key: 'ESTOQUE_INICIAL', label: 'Estoque Inicial', sortable: true },
         { key: 'ENTRADAS', label: 'Entradas', sortable: true },
         { key: 'SAIDAS', label: 'Saidas', sortable: true },
         { key: 'ESTOQUE_FINAL', label: 'Estoque Final', sortable: true }
       ]
-
     }
   },
 
   methods: {
-    format (value, event) {
-      return moment(value).format('DD-MM-YYYY')
-    },
-
     ConsultarCMV (DT_INI, DT_FIM, PRODUTO) {
       const url = `${baseApiUrl}/consultas/cmv?DT_INI=` + moment(DT_INI).format('DD-MM-YYYY') + '&DT_FIM=' + moment(DT_FIM).format('DD-MM-YYYY') + '&PRODUTO=' + PRODUTO
       axios.get(url, userToken).then(res => {
@@ -88,7 +81,6 @@ export default {
 
   mounted () {
     this.listarProdutos()
-    this.ConsultarCMV()
   }
 
 }
