@@ -1,3 +1,7 @@
+const gettersCommon = {
+  getStateMenu: state => state.Common.stateMenu
+}
+
 const gettersUser = {
   userToken: state => state.AuthUser.token,
   userAuth: state => state.AuthUser.user,
@@ -8,6 +12,7 @@ const gettersUser = {
 
 const getters = Object.assign(
   {},
+  gettersCommon,
   gettersUser
 )
 

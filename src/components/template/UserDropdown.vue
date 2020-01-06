@@ -30,7 +30,6 @@ export default {
   },
   computed: {
     user () {
-      console.log((this.$store.getters.userInfo || null))
       return this.$store.getters.userInfo || null
     }
   }

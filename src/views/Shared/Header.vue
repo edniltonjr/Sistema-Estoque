@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <a v-if="!toogle" class="toggle">
+    <a v-if="!toogle" href="javascript:void(0);" class="toggle" @click.prevent="handlerMenuState">
       <i class="fa fa-lg"></i>
     </a>
     <h1 class="title">
@@ -28,6 +28,12 @@ export default {
     userMenu: {
       type: Boolean,
       default: false
+    }
+  },
+  methods: {
+    async handlerMenuState () {
+      await this.$store.dispatch('setStateMenu')
+      console.log(this.$store.getters.getStateMenu)
     }
   }
 }
