@@ -20,6 +20,9 @@
           <b-tab title="Saidas" active>
             <SaidaAdmin />
           </b-tab>
+          <b-tab title="Consulta CMV" active>
+            <ConsultaCMV />
+          </b-tab>
         </b-tabs>
       </b-card>
     </div>
@@ -32,6 +35,7 @@ import FornecAdmin from './FornecAdmin'
 import CategoryAdmin from './CategoryAdmin'
 import EntradaAdmin from './EntradaAdmin'
 import SaidaAdmin from './SaidaAdmin'
+import ConsultaCMV from './ConsultaCMV'
 export default {
   name: 'AdminPages',
   components: {
@@ -39,7 +43,8 @@ export default {
     FornecAdmin,
     CategoryAdmin,
     EntradaAdmin,
-    SaidaAdmin
+    SaidaAdmin,
+    ConsultaCMV
   }
 }
 </script>
