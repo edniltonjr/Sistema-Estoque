@@ -6,10 +6,10 @@
               <b-col md="6" sm="12">
 
                   <b-form-group label="Nome Produto" label-for="produto-name">
-                      <b-form-input id="produto-name" type="text"
-                      v-model="produto.DESCRICAO" required
-                      :readonly="mode === 'remove'"
-                      placeholder="Informe a Descrição" />
+                    <b-form-input id="produto-name" type="text"
+                    v-model="produto.DESCRICAO" required
+                    :readonly="mode === 'remove'"
+                    placeholder="Informe a Descrição" />
                   </b-form-group>
 
                   <b-form-group label="FORNECEDOR" label-for="fornec-categ">
@@ -24,7 +24,6 @@
 
               </b-col>
          </b-row>
-
         <b-button variant="primary" v-if="mode === 'save'" @click="save">Salvar</b-button>
         <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
         <b-button class="ml-2" @click="reset">Cancelar</b-button>
@@ -45,7 +44,7 @@
 </template>
 
 <script>
-import { showError } from '@/errors/default.js'
+import { showError, userToken } from '@/errors/default.js'
 import axios from 'axios'
 const baseApiUrl = process.env.VUE_APP_BASE_API_URL
 
@@ -73,7 +72,7 @@ export default {
   methods: {
     listarCategorias () {
       const url = `${baseApiUrl}/categorias`
-      axios.get(url).then(res => {
+      axios.get(url, userToken).then(res => {
         this.categorias = res.data.map(categoria => {
           return { ...categoria, value: categoria.ID_CATEGORIA, text: categoria.DESCRICAO }
         })
@@ -82,7 +81,7 @@ export default {
 
     listarFornecedores () {
       const url = `${baseApiUrl}/fornecedores`
-      axios.get(url).then(res => {
+      axios.get(url, userToken).then(res => {
         this.fornecedores = res.data.map(fornecedor => {
           return { ...fornecedor, value: fornecedor.ID_FORNECEDOR, text: fornecedor.NOME }
         })
@@ -92,7 +91,7 @@ export default {
 
     listarProdutos () {
       const url = `${baseApiUrl}/produtos`
-      axios.get(url).then(res => {
+      axios.get(url, userToken).then(res => {
         this.produtos = res.data
       })
     },
@@ -106,7 +105,7 @@ export default {
     save () {
       const method = this.produto.ID_PRODUTO ? 'put' : 'post'
       const id = this.produto.ID_PRODUTO ? `/${this.produto.ID_PRODUTO}` : ''
-      axios[method](`${baseApiUrl}/produtos${id}`, this.produto)
+      axios[method](`${baseApiUrl}/produtos${id}`, this.produto, userToken)
         .then(() => {
           this.$toasted.global.defaultSuccess()
           this.reset()
@@ -116,7 +115,7 @@ export default {
 
     remove () {
       const id = this.produto.ID_PRODUTO
-      axios.delete(`${baseApiUrl}/produtos/${id}`)
+      axios.delete(`${baseApiUrl}/produtos/${id}`, userToken)
         .then(() => {
           this.$toasted.global.defaultSuccess()
           this.reset()

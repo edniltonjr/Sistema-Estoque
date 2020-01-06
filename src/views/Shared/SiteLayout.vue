@@ -1,23 +1,25 @@
 <template>
-  <div class="app" :toogle="true">
+  <div class="app" :toogle="true" >
     <Header title="ACOBRAZIL SISTEMAS DE ESTOQUE"></Header>
-    <!-- <menu-site></menu-site> -->
+    <Content />
+    <Menu />
     <transition name="fade" mode="out-in">
-      <router-render />
     </transition>
     <Footer />
   </div>
 </template>
 
 <script>
-import RouterRender from './RouterRender.vue'
+// import RouterRender from './RouterRender.vue'
+import Menu from './Menu'
 import Header from './Header.vue'
+import Content from './Content.vue'
 import Footer from './Footer.vue'
 
 export default {
   name: 'SiteLayout',
   components: {
-    RouterRender, Header, Footer
+    Header, Content, Menu, Footer
   },
   computed: {
     user () {

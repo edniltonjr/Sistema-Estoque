@@ -39,11 +39,11 @@
 </template>
 
 <script>
-import { baseApiUrl, showError } from '@/global'
+import { baseApiUrl, showError, userToken } from '@/errors/default.js'
 import axios from 'axios'
 
 export default {
-  name: 'CategoryAdmin',
+  name: 'FornecAdmin',
   data: function () {
     return {
       mode: 'save',
@@ -60,7 +60,7 @@ export default {
   methods: {
     listarFornecedores () {
       const url = `${baseApiUrl}/fornecedores`
-      axios.get(url).then(res => {
+      axios.get(url, userToken).then(res => {
         this.fornecedores = res.data
       })
     },
@@ -74,7 +74,7 @@ export default {
     save () {
       const method = this.fornecedor.ID_FORNECEDOR ? 'put' : 'post'
       const id = this.fornecedor.ID_FORNECEDOR ? `/${this.fornecedor.ID_FORNECEDOR}` : ''
-      axios[method](`${baseApiUrl}/fornecedores${id}`, this.fornecedor)
+      axios[method](`${baseApiUrl}/fornecedores${id}`, this.fornecedor, userToken)
         .then(() => {
           this.$toasted.global.defaultSuccess()
           this.reset()
@@ -84,7 +84,7 @@ export default {
 
     remove () {
       const id = this.fornecedor.ID_FORNECEDOR
-      axios.delete(`${baseApiUrl}/fornecedores/${id}`)
+      axios.delete(`${baseApiUrl}/fornecedores/${id}`, userToken)
         .then(() => {
           this.$toasted.global.defaultSuccess()
           this.reset()

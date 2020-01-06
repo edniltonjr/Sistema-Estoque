@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { baseApiUrl, showError } from '@/global'
+import { baseApiUrl, showError, userToken } from '@/errors/default'
 import axios from 'axios'
 
 export default {
@@ -52,7 +52,7 @@ export default {
   methods: {
     listarCategorias () {
       const url = `${baseApiUrl}/categorias`
-      axios.get(url).then(res => {
+      axios.get(url, userToken).then(res => {
         this.categorias = res.data
       })
     },
@@ -66,7 +66,7 @@ export default {
     save () {
       const method = this.categoria.ID_CATEGORIA ? 'put' : 'post'
       const id = this.categoria.ID_CATEGORIA ? `/${this.categoria.ID_CATEGORIA}` : ''
-      axios[method](`${baseApiUrl}/categorias${id}`, this.categoria)
+      axios[method](`${baseApiUrl}/categorias${id}`, this.categoria, userToken)
         .then(() => {
           this.$toasted.global.defaultSuccess()
           this.reset()
@@ -76,7 +76,7 @@ export default {
 
     remove () {
       const id = this.categoria.ID_CATEGORIA
-      axios.delete(`${baseApiUrl}/categorias/${id}`)
+      axios.delete(`${baseApiUrl}/categorias/${id}`, userToken)
         .then(() => {
           this.$toasted.global.defaultSuccess()
           this.reset()

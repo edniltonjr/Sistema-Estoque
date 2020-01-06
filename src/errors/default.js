@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 export const userKey = '_user'
 export const baseApiUrl = process.env.VUE_APP_BASE_API_URL
+export const userToken = { headers: { Authorization: 'Bearer ' + localStorage.getItem('_userToken_') || '' } }
 
 export function showError (e) {
   if (e && e.response && e.response.data) {
@@ -13,4 +14,4 @@ export function showError (e) {
   }
 }
 
-export default { baseApiUrl, showError, userKey }
+export default { baseApiUrl, showError, userKey, userToken }
