@@ -5,11 +5,9 @@
           <b-row>
               <b-col  sm="12">
                   <b-form-group label="Periodo" label-for="dtini">
-                      <b-form-input id="dtini" type="date"
-                       required v-model="consulta.DT_INI" />
+                      <b-form-input id="dtini" type="date" required v-model="consulta.DT_INI" />
 
-                  <b-form-input id="dtfim" type="date"
-                       required v-model="consulta.DT_FIM" />
+                  <b-form-input id="dtfim" type="date" required v-model="consulta.DT_FIM" />
                   </b-form-group>
 
                   <b-form-group label="PRODUTO" label-for="estoque-name">
@@ -24,13 +22,14 @@
 
         </b-form>
         <hr>
-      <b-table hover striped :items="estoques" :fields="fields">
+      <b-table hover striped :items="consultas" :fields="fields">
       </b-table>
   </div>
 </template>
 
 <script>
 import Select2 from 'v-select2-component'
+import moment from 'moment'
 import { baseApiUrl, userToken } from '@/errors/default'
 import axios from 'axios'
 
@@ -60,9 +59,12 @@ export default {
   },
 
   methods: {
+    format (value, event) {
+      return moment(value).format('DD-MM-YYYY')
+    },
 
     ConsultarCMV (DT_INI, DT_FIM, PRODUTO) {
-      const url = `${baseApiUrl}/consultas/cmv?DT_INI=` + DT_INI + '&DT_FIM=' + DT_FIM + '&PRODUTO=' + PRODUTO
+      const url = `${baseApiUrl}/consultas/cmv?DT_INI=` + moment(DT_INI).format('DD-MM-YYYY') + '&DT_FIM=' + moment(DT_FIM).format('DD-MM-YYYY') + '&PRODUTO=' + PRODUTO
       axios.get(url, userToken).then(res => {
         this.consultas = res.data
       })
@@ -86,6 +88,7 @@ export default {
 
   mounted () {
     this.listarProdutos()
+    this.ConsultarCMV()
   }
 
 }
