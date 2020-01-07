@@ -27,11 +27,10 @@
         <b-button variant="primary" v-if="mode === 'save'" @click="save">Salvar</b-button>
         <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
         <b-button class="ml-2" @click="reset">Cancelar</b-button>
-
         </b-form>
         <hr>
       <b-table hover striped :items="produtos" :fields="fields">
-          <template slot="actions" slot-scope="data">
+          <template v-slot:cell(actions)="data">
                 <b-button variant="warning" @click="loadProduto(data.item)" class="mr-2">
                     <i class="fa fa-pencil"></i>
                 </b-button>
@@ -64,7 +63,8 @@ export default {
         { key: 'PRODUTO', label: 'Produto', sortable: true },
         { key: 'CATEGORIA', label: 'Categoria', sortable: true },
         { key: 'FORNECEDOR', label: 'Fornecedor', sortable: true },
-        { key: 'actions', label: 'Ações' }]
+        { key: 'actions', label: 'Ações' }
+      ]
 
     }
   },

@@ -4,7 +4,7 @@ module.exports = {
     ? '/PRODUCAO/'
     : '/',
   devServer: {
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: '10.83.1.72', // can be overwritten by process.env.HOST
     port: 9090 // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
   },
   pwa: {

@@ -20,7 +20,7 @@
       <hr>
 
       <b-table hover striped :items="categorias" :fields="fields">
-          <template slot="actions" slot-scope="data">
+        <template v-slot:cell(actions)="data">
                 <b-button variant="warning" @click="loadCategory(data.item)" class="mr-2">
                     <i class="fa fa-pencil"></i>
                 </b-button>
