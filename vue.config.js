@@ -1,7 +1,7 @@
 module.exports = {
   productionSourceMap: false,
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/PRODUCAO/'
+    ? '/'
     : '/',
   devServer: {
     host: '10.83.1.72', // can be overwritten by process.env.HOST

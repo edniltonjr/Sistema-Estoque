@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import ProductService from '@/Services/ProductService.js'
 import { showError, userToken } from '@/errors/default.js'
 import axios from 'axios'
 const baseApiUrl = process.env.VUE_APP_BASE_API_URL
@@ -90,9 +91,9 @@ export default {
     },
 
     listarProdutos () {
-      const url = `${baseApiUrl}/produtos`
-      axios.get(url, userToken).then(res => {
+      ProductService.getProducts().then(res => {
         this.produtos = res.data
+        console.log('teste')
       })
     },
 
@@ -104,7 +105,7 @@ export default {
 
     save () {
       const method = this.produto.ID_PRODUTO ? 'put' : 'post'
-      const id = this.produto.ID_PRODUTO ? `/${this.produto.ID_PRODUTO}` : ''
+      const id = this.produto.ID_PRODUTO ? '' : ''
       axios[method](`${baseApiUrl}/produtos${id}`, this.produto, userToken)
         .then(() => {
           this.$toasted.global.defaultSuccess()

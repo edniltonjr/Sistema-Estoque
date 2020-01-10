@@ -5,6 +5,13 @@
           <b-row>
               <b-col md="6" sm="12">
 
+                <b-form-group label="FILIAL" label-for="filial-name">
+                      <b-form-input id="filial-name" type="number"
+                      v-model="estoque.CODFILIAL" required
+                      :readonly="mode === 'remove'"
+                      placeholder="Digite a filial" />
+                  </b-form-group>
+
                   <b-form-group label="QT SAIDA" label-for="estoque-name">
                       <b-form-input id="estoque-name" type="number"
                       v-model="estoque.QT_SAIDA" required

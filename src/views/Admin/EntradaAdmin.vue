@@ -3,30 +3,39 @@
       <b-form>
           <input id="prod-id" type="hidden" v-model="estoque.ID_ESTOQUE" />
           <b-row>
-              <b-col  sm="12">
+             <b-col md="6" sm="12">
+
+                <b-form-group label="FILIAL" label-for="filial-name">
+                      <b-form-input id="filial-name" type="number"
+                      v-model="estoque.CODFILIAL"
+                      :readonly="mode === 'remove'"
+                      placeholder="Digite a filial" />
+                  </b-form-group>
+
                     <b-form-group label="NF" label-for="estoque-name">
                       <b-form-input id="estoque-name" type="number"
-                      v-model="estoque.NOTA_FISCAL" required
+                      v-model="estoque.NOTA_FISCAL"
                       :readonly="mode === 'remove'"
                       placeholder="Digite a NF" />
                   </b-form-group>
 
-                  <b-form-group label="PRODUTOS" label-for="prod-categ">
+                  <b-form-group label="PRODUTO" label-for="prod-categ">
+                        <b-form-select id="prod-categ" :options="produtos" v-model="estoque.ID_PRODUTO">
+                        </b-form-select>
+                  </b-form-group>
 
-                    <Select2 v-model="estoque.ID_PRODUTO" id="prod-categ" :options="produtos" :settings="{ placeholder: 'SELECIONE O PRODUTO'}" />
-
-                    </b-form-group>
+                <!-- <Select2 v-model="estoque.ID_PRODUTO" :options="produtos" :settings="{ placeholder: 'SELECIONE O PRODUTO'}" /> -->
 
                   <b-form-group label="QT ENTRADA" label-for="estoque-name">
-                      <b-form-input id="estoque-name" type="number"
-                      v-model="estoque.QT_ENTRADA" required
+                      <b-form-input id="estoque-name" type="text"
+                      v-model="estoque.QT_ENTRADA"
                       :readonly="mode === 'remove'"
                       placeholder="Digite o Quantidade de Entrada" />
                   </b-form-group>
 
                  <b-form-group label="VL UNIT R$" label-for="vl-name">
                       <b-form-input id="vl-name" type="text"
-                      v-model="estoque.VL_UNIT" required
+                      v-model="estoque.VL_UNIT"
                       :readonly="mode === 'remove'"
                       placeholder="R$ 0,00" />
                   </b-form-group>
@@ -45,13 +54,12 @@
 </template>
 
 <script>
-import Select2 from 'v-select2-component'
+// import Select2 from 'v-select2-component'
 import { baseApiUrl, showError, userToken } from '@/errors/default'
 import axios from 'axios'
 
 export default {
   name: 'EntradaAdmin',
-  components: { Select2 },
   data: function () {
     return {
       optionSelected: null,
@@ -99,7 +107,7 @@ export default {
       const url = `${baseApiUrl}/produtos`
       axios.get(url, userToken).then(res => {
         this.produtos = res.data.map(produto => {
-          return { ...produto, id: produto.ID_PRODUTO, text: produto.PRODUTO }
+          return { ...produto, value: produto.ID_PRODUTO, text: produto.PRODUTO }
         })
       })
     },

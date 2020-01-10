@@ -66,7 +66,7 @@ export default {
 
     save () {
       const method = this.categoria.ID_CATEGORIA ? 'put' : 'post'
-      const id = this.categoria.ID_CATEGORIA ? `/${this.categoria.ID_CATEGORIA}` : ''
+      const id = this.categoria.ID_CATEGORIA ? '' : ''
       axios[method](`${baseApiUrl}/categorias${id}`, this.categoria, userToken)
         .then(() => {
           this.$toasted.global.defaultSuccess()
