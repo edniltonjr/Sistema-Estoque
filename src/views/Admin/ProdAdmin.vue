@@ -13,12 +13,12 @@
                   </b-form-group>
 
                   <b-form-group label="FORNECEDOR" label-for="fornec-categ">
-                        <b-form-select id="fornecedor-categ" :options="fornecedores" v-model="produto.ID_FORNECEDOR">
+                        <b-form-select id="fornecedor-categ" :options="fornecedores" v-model="produto.ID_FORNECEDOR"  :readonly="mode === 'remove'">
                         </b-form-select>
                   </b-form-group>
 
                   <b-form-group label="CATEGORIA">
-                      <b-form-select id="produto-categ" :options="categorias" v-model="produto.ID_CATEGORIA">
+                      <b-form-select id="produto-categ" :options="categorias" v-model="produto.ID_CATEGORIA"  :readonly="mode === 'remove'">
                       </b-form-select>
                   </b-form-group>
 
@@ -27,6 +27,7 @@
         <b-button variant="primary" v-if="mode === 'save'" @click="save">Salvar</b-button>
         <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
         <b-button class="ml-2" @click="reset">Cancelar</b-button>
+
         </b-form>
         <hr>
       <b-table hover striped :items="produtos" :fields="fields">
@@ -92,8 +93,7 @@ export default {
 
     listarProdutos () {
       ProductService.getProducts().then(res => {
-        this.produtos = res.data
-        console.log('teste')
+        this.produtos = res
       })
     },
 
@@ -131,9 +131,9 @@ export default {
   },
 
   mounted () {
-    this.listarProdutos()
     this.listarFornecedores()
     this.listarCategorias()
+    this.listarProdutos()
   }
 
 }
